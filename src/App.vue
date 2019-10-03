@@ -2,8 +2,12 @@
     <div class="app-container">
         <!-- 顶部Header区域 -->
         <mt-header fixed title="Vue项目一"></mt-header>
+
         <!-- 中间路由router-view区 -->
-        <h1>123456</h1>
+        <transition>
+            <router-view></router-view>
+        </transition>
+        
         <!-- 底部tabbar区 -->
         <nav class="mui-bar mui-bar-tab">
             <router-link class="mui-tab-item" to="/home">
@@ -27,12 +31,29 @@
         </nav>
     </div>
 </template>
+
 <script>
 </script>
+
 <style scoped>
 .app-container {
-    padding-top: 40px;
-    padding-bottom: 50px;
-    overflow-x: hidden;
+  padding-top: 40px;
+  overflow-x: hidden;
+}
+
+.v-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s ease;
 }
 </style>
