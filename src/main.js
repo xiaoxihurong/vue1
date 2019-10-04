@@ -12,6 +12,10 @@ import VueResource from 'vue-resource'
 // 2.2 安装 vue-resource
 Vue.use(VueResource)
 Vue.http.options.root = 'http://www.liulongbin.top:3005';
+Vue.http.options.emulateJSON = true;
+
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
 
 // 导入格式化时间的插件
 import moment from 'moment'
@@ -25,11 +29,15 @@ import './lib/mui/css/mui.min.css'  // 导入 MUI 的样式
 import './lib/mui/css/icons-extra.css' // 导入扩展图标样式
 
 // 按需导入 Mint-UI 中的组件 
-import { Header, Swipe, SwipeItem ,Button} from 'mint-ui'
-Vue.component(Header.name, Header)
-Vue.component(Swipe.name, Swipe)
-Vue.component(SwipeItem.name, SwipeItem)
-Vue.component(Button.name, Button)
+// import { Header, Swipe, SwipeItem, Button, Lazyload } from 'mint-ui'
+// Vue.component(Header.name, Header)
+// Vue.component(Swipe.name, Swipe)
+// Vue.component(SwipeItem.name, SwipeItem)
+// Vue.component(Button.name, Button)
+// Vue.use(Lazyload);
+import MintUI from 'mint-ui'
+Vue.use(MintUI)
+import 'mint-ui/lib/style.css'
 
 
 import app  from './App.vue'      // 导入 App 根组件
