@@ -1,51 +1,54 @@
 <template>
     <div class="goods-list">
-        <div class="goods-item">
-            <img src="https://img.alicdn.com/bao/uploaded/i1/100960645/O1CN017GKov81GdS1WrBiKL_!!100960645.jpg_360x360xzq90s150.jpg_.webp" alt="">
-            <h1 class="title">Coolpad/酷派 1873-A0学生价全面屏安卓游戏智能手机全网通cool9</h1>
+        <div class="goods-item" v-for='item in goodslist' :key='item.id' @click="goDetail(item.id)">
+            <img :src="item.img_url" alt="">
+            <h1 class="title">{{item.title}}</h1>
             <div class="info">
                 <p class="price">
-                    <span class="now">￥899</span>
-                    <span class="old">￥999</span>
+                    <span class="now">￥{{item.sell_price}}</span>
+                    <span class="old">￥{{item.market_price}}</span>
                 </p>
                 <p class="sell">
                     <span>热卖中</span>
-                    <span>剩60件</span>
+                    <span>剩{{item.stock_quantity}}件</span>
                 </p>
             </div>
         </div>
-        <div class="goods-item">
-            <img src="https://gaitaobao2.alicdn.com/tfscom/i1/3424894711/O1CN01MSmsdb1kfgMQbvlDp_!!0-item_pic.jpg_240x240xz.jpg_.webp" alt="">
-            <h1 class="title">Sony索尼a5100l微单套机单反相机学生款入门级女生高像素旅行家用</h1>
-            <div class="info">
-                <p class="price">
-                    <span class="now">￥899</span>
-                    <span class="old">￥999</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span>剩60件</span>
-                </p>
-            </div>
-        </div>
-        <div class="goods-item">
-            <img src="https://img.alicdn.com/bao/uploaded/i1/100960645/O1CN017GKov81GdS1WrBiKL_!!100960645.jpg_360x360xzq90s150.jpg_.webp" alt="">
-            <h1 class="title">Coolpad/酷派 1873-A0学生价全面屏安卓游戏智能手机全网通cool9</h1>
-            <div class="info">
-                <p class="price">
-                    <span class="now">￥899</span>
-                    <span class="old">￥999</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span>剩60件</span>
-                </p>
-            </div>
-        </div>
+        <mt-button type="danger" size="large" plain @click="getMore">加载更多</mt-button>
     </div>
 </template>
+
 <script>
+    export default{
+        data(){
+            return{
+                pageindex:1,
+                goodslist:[]}
+        },
+        created(){
+            this.getgoodslist()
+        },
+        methods:{
+            getgoodslist(){
+                this.$http.get('api/getgoods?pageindex='+this.pageindex)
+                    .then(result=>{
+                        if(result.body.status===0){
+                            this.goodslist=this.goodslist.concat(result.body.message)
+                        }
+                    })
+            },
+            getMore(){
+                this.pageindex++;
+                this.getgoodslist()
+            },
+            goDetail(id){
+
+                this.$router.push({name:'GoodsInfo',params:{id}})
+            }
+        }
+    }
 </script>
+
 <style scoped>
 .goods-list {
     display: flex;

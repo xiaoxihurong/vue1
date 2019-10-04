@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='home_container'>
         <!-- 轮播图区域 -->
         <mt-swipe :auto="4000">
             <mt-swipe-item>
@@ -62,30 +62,30 @@
 <script type="text/javascript">
 </script>
 <style type="text/css">
-.mint-swipe {
+.home_container .mint-swipe {
     height: 200px;
 }
 
-.mint-swipe img {
+.home_container .mint-swipe img {
     width: 100%;
     height: 100%;
 }
 
-.mui-grid-view.mui-grid-9 {
+.home_container .mui-grid-view.mui-grid-9 {
     background-color: #fff;
     border: none;
 }
 
-.mui-grid-view.mui-grid-9 img {
+.home_container .mui-grid-view.mui-grid-9 img {
     width: 60px;
     height: 60px;
 }
 
-.mui-grid-view.mui-grid-9 .mui-media-body {
+.home_container .mui-grid-view.mui-grid-9 .mui-media-body {
     font-size: 13px;
 }
 
-.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+.home_container .mui-grid-view.mui-grid-9 .mui-table-view-cell {
     border: 0;
 }
 </style>
